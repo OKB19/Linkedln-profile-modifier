@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Profile</title>
+  <style>
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #efc19e;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgb(240, 133, 2);
+      background-image: url('anime_background.jpg'); /* Add anime-style background image */
+      background-size: cover; /* Ensure the background image covers the entire body */
+    }
+    h3 {
+      text-align: center;
+      color: #000000;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #000000;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    .file-upload-container {
+      border: 2px dashed #ef4908;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .file-upload-container:hover {
+      border-color: #7d3417;
+    }
+    .file-upload-text {
+      color: #ef4908;
+      font-size: 16px;
+    }
+    .file-upload-text:hover {
+      text-decoration: underline;
+    }
+    .file-list {
+      margin-top: 10px;
+    }
+    .file-list-item {
+      margin-bottom: 5px;
+      color: #000000;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ef4908;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #7d3417;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ef4908;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .status.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h3>Upload Profile</h3>
+  <div class="input-container">
+    <label for="image-upload" class="file-upload-container">
+      <span class="file-upload-text">Click here to upload images</span>
+      <input type="file" id="image-upload" accept="image/*" multiple>
+    </label>
+    <div class="file-list" id="file-list"></div>
+  </div>
+  <button id="change-pictures">Change</button>
+  <div class="status" id="status"></div>
+
+  <script src="popup.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const input = document.getElementById("image-upload");
+      const fileList = document.getElementById("file-list");
+
+      input.addEventListener("change", function() {
+        const files = input.files;
+        fileList.innerHTML = "";
+        for (let i = 0; i < files.length; i++) {
+          const listItem = document.createElement("div");
+          listItem.classList.add("file-list-item");
+          listItem.textContent = files[i].name;
+          fileList.appendChild(listItem);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
